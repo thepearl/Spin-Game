@@ -9,15 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    private var symbols = ["apple", "star", "cherry"]
-    @State private var numbers = [0, 1, 2]
-    @State private var credits = 1000
-    private var betAmount = 5
-    var body: some View {
+        private var symbols = ["apple", "star", "cherry"]
+        @State private var numbers = [0, 1, 2]
+        @State private var credits = 1000
+        private var betAmount = 100
+        @State private var gameOver = false
+var body: some View {
         ZStack{
             //Background
             Rectangle()
-            .foregroundColor(Color(red: 129/255, green: 236/255, blue: 236/255))
+                .foregroundColor(Color(red: 129/255, green: 236/255, blue: 236/255))
                 .edgesIgnoringSafeArea(.all)
             Rectangle()
             .foregroundColor(Color(red: 85/255, green: 239/255, blue: 196/255))
@@ -37,7 +38,7 @@ struct ContentView: View {
                     
                     Image(systemName: "star.fill")
                         .foregroundColor(.yellow)
-                    .frame(width: 45, height: 45)
+                        .frame(width: 45, height: 45)
 
                 }.scaleEffect(2)
                 Spacer()
@@ -54,22 +55,22 @@ struct ContentView: View {
                     //Cards
                     Spacer()
                     Image(symbols[numbers[0]])
-                    .resizable()
+                        .resizable()
                         .aspectRatio(1, contentMode: .fit)
-                    .background(Color.white.opacity(0.75))
+                        .background(Color.white.opacity(0.75))
                         .cornerRadius(20)
 
                     Image(symbols[numbers[1]])
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fit)
-                    .background(Color.white.opacity(0.75))
-                    .cornerRadius(20)
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(20)
 
                     Image(symbols[numbers[2]])
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fit)
-                    .background(Color.white.opacity(0.75))
-                    .cornerRadius(20)
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .background(Color.white.opacity(0.75))
+                        .cornerRadius(20)
 
                     Spacer()
                 }
@@ -82,15 +83,24 @@ struct ContentView: View {
                     
                     self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
                     
-                    //winner winner chiken dinner
-                    if self.numbers[0] == self.numbers[1] &&
-                        self.numbers[1] == self.numbers[2] {
-                        //Won
-                        self.credits += self.betAmount * 10
+                    //Check Credit
+                    if (self.credits >= 100) {
+                            // u got the cash
+                                //winner winner chiken dinner
+                                if (self.numbers[0] == self.numbers[1] &&
+                                    self.numbers[1] == self.numbers[2]) {
+                                    //Won
+                                    self.credits += 500
+                                }
+                                    //Unlcuky
+                                else{
+                                    self.credits -= self.betAmount
+                                }
                     }
                     else{
-                        self.credits -= self.betAmount
-                    }
+                        //No money :(
+                        self.gameOver.toggle()
+                        }
                 }) {
                     Text("Spin")
                         .font(.title)
@@ -98,12 +108,20 @@ struct ContentView: View {
                         .padding([.leading, .trailing], 30)
                         .background(Color(.yellow))
                         .cornerRadius(15)
-                }
-                
+                }.actionSheet(isPresented: $gameOver, content: {
+                    ActionSheet(title: Text("Game Over"), message: Text("Game is over, click relaod to restart again"),
+                        buttons:[
+                            .default(Text("Reload"), action: {
+                                self.credits = 1000
+                            }),
+                            .default(Text("Exit"), action: {
+                                exit(0)
+                            })
+                    ] )
+                })
                 Spacer()
             }
         }
-        
     }
 }
 
