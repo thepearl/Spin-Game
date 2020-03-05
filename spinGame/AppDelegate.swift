@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  spinGame
 //
-//  Created by Mohamed Ali BELHADJ on 2/29/20.
+//  Created by Ghazi Tozri on 2/29/20.
 //  Copyright © 2020 wimobi. All rights reserved.
 //
 

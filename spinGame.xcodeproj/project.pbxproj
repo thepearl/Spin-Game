@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A91B4302411006400EA672B /* cardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91B42F2411006400EA672B /* cardView.swift */; };
 		7AD7B439240A728100AAFFA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7B438240A728100AAFFA5 /* AppDelegate.swift */; };
 		7AD7B43B240A728100AAFFA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7B43A240A728100AAFFA5 /* SceneDelegate.swift */; };
 		7AD7B43D240A728100AAFFA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD7B43C240A728100AAFFA5 /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A91B42F2411006400EA672B /* cardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardView.swift; sourceTree = "<group>"; };
 		7AD7B435240A728100AAFFA5 /* spinGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spinGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD7B438240A728100AAFFA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AD7B43A240A728100AAFFA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				7AD7B438240A728100AAFFA5 /* AppDelegate.swift */,
 				7AD7B43A240A728100AAFFA5 /* SceneDelegate.swift */,
 				7AD7B43C240A728100AAFFA5 /* ContentView.swift */,
+				7A91B42F2411006400EA672B /* cardView.swift */,
 				7AD7B43E240A728200AAFFA5 /* Assets.xcassets */,
 				7AD7B443240A728200AAFFA5 /* LaunchScreen.storyboard */,
 				7AD7B446240A728200AAFFA5 /* Info.plist */,
@@ -148,6 +151,7 @@
 			files = (
 				7AD7B439240A728100AAFFA5 /* AppDelegate.swift in Sources */,
 				7AD7B43B240A728100AAFFA5 /* SceneDelegate.swift in Sources */,
+				7A91B4302411006400EA672B /* cardView.swift in Sources */,
 				7AD7B43D240A728100AAFFA5 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

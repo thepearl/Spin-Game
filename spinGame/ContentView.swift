@@ -2,16 +2,17 @@
 //  ContentView.swift
 //  spinGame
 //
-//  Created by Mohamed Ali BELHADJ on 2/29/20.
+//  Created by Ghazi Tozri on 2/29/20.
 //  Copyright © 2020 wimobi. All rights reserved.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-        private var symbols = ["apple", "star", "cherry"]
+        @State private var symbols = ["apple", "star", "cherry"]
         @State private var numbers = [0, 1, 2]
         @State private var credits = 1000
+        @State private var backgrounds = [Color.white, Color.white, Color.white]
         private var betAmount = 100
         @State private var gameOver = false
 var body: some View {
@@ -52,53 +53,47 @@ var body: some View {
                 Spacer()
                 //Pictures
                 HStack{
+                    
                     //Cards
                     Spacer()
-                    Image(symbols[numbers[0]])
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                        .background(Color.white.opacity(0.75))
-                        .cornerRadius(20)
+                    cardView(symbol: $symbols[numbers[0]], background: $backgrounds[0])
+                    cardView(symbol: $symbols[numbers[1]], background: $backgrounds[1])
+                    cardView(symbol: $symbols[numbers[2]], background: $backgrounds[2])
 
-                    Image(symbols[numbers[1]])
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                        .background(Color.white.opacity(0.75))
-                        .cornerRadius(20)
-
-                    Image(symbols[numbers[2]])
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                        .background(Color.white.opacity(0.75))
-                        .cornerRadius(20)
 
                     Spacer()
                 }
                 Spacer()
                 Button(action: {
+                    //Set backgrounds to white
+                    self.backgrounds = self.backgrounds.map{ _ in
+                        Color.white
+                    }
                     //Random cards values
-                    self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
-                    
-                    self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
-                    
-                    self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
+                    self.numbers = self.numbers.map{ _ in
+                        Int.random(in: 0...self.symbols.count - 1)
+                    }
                     
                     //Check Credit
                     if (self.credits >= 100) {
-                            // u got the cash
-                                //winner winner chiken dinner
-                                if (self.numbers[0] == self.numbers[1] &&
-                                    self.numbers[1] == self.numbers[2]) {
-                                    //Won
+                            //u got the cash
+                                if self.numbers[0] == self.numbers[1] &&
+                                    self.numbers[1] == self.numbers[2] {
+                                    //winner winner chiken dinner
                                     self.credits += 500
+                                    //update backgrounds
+                                    self.backgrounds = self.backgrounds.map{ _ in
+                                        Color.green  
+                                    }
                                 }
-                                    //Unlcuky
+                                    
                                 else{
+                                    //Unlcuky
                                     self.credits -= self.betAmount
                                 }
                     }
-                    else{
                         //No money :(
+                    else{
                         self.gameOver.toggle()
                         }
                 }) {
